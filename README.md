@@ -15,34 +15,17 @@
 
 ### About The Project 💡
 
-This repository contains the complete Python source code for the research paper, "Boosting Quantum Classifier Efficiency through Data Re-Uploading and Dual Cost Functions." The project builds upon the foundational work of the universal quantum classifier by Pérez-Salinas et al. by introducing new cost functions, enhanced testing methodologies, and a more robust framework for evaluating classifier performance.
-
-The code is organized into three distinct directories, representing the evolution of the project.
+This repository contains the complete Python source code for the research paper, "Boosting Quantum Classifier Efficiency through Data Re-Uploading and Dual Cost Functions." 
+The code is organized into two distinct directories, representing the evolution of the project.
 
 ### Code Structure 📂
 
 The project is divided into two main folders:
 
-*   **`Fixed/`**: This directory represents the first major contribution of our paper. It enhances the original codebase by introducing a dual cost function system and expanded classification problems. The term "Fixed" refers to the methodology of running each experiment once with a fixed random seed for deterministic and reproducible results.
+*   **`Fixed/`**: This directory represents the first major contribution of our paper. It enhances the introductory of the dual cost function system and expanded classification problems. The term "Fixed" refers to the methodology of running each experiment once with a fixed random seed for deterministic and reproducible results. More detail of dual cost function system can be found in the supplementary note 8.
 
-*   **`Random/`**: This directory builds upon the `Fixed` version to provide a more statistically robust analysis. The code here is designed to run each experiment multiple times (20 iterations by default) with different random initializations and then averages the performance metrics. This approach is crucial for evaluating the classifier's performance on random datasets and ensuring that the results are statistically significant and not due to a favorable random seed.
+*   **`Random/`**: This directory represent random dataset to provide more statistically robust analysis. In order to represent a fundamental dataset for real application each run has been repeated multiple times with different random initializations (20 iterations by default). The result of each set of iteration has been averaged to show the performance metrics. This approach is crucial for evaluating the classifier's performance on random datasets and ensuring that the results are statistically significant and not due to a favorable random seed.
 
-### Key Enhancements and a Comparison with the Original Code
-
-The `Fixed` and `Random` folders introduce several key improvements over the Original codebase:
-
-1.  **Dual Cost Functions**:
-    *   We have implemented a **Trace Distance** cost function (`trace_chi`) as an alternative to the original Fidelity-based function (`fidelity_chi`). This is a core contribution of our work, explored in the new `trace_minimization.py` file.
-    *   The `QuantumState.py` simulator was updated to calculate and store the Bloch vector (`self.r`), which is essential for the trace distance computation.
-
-2.  **Expanded Problem Sets**:
-    *   New classification problems, such as the `line` problem, have been added in `data_gen.py` and `problem_gen.py` to test the classifier on a wider range of linear and non-linear tasks.
-
-3.  **Automated and Comprehensive Experimentation**:
-    *   The `main.py` script has been significantly improved to automate the process of running experiments. It now systematically iterates through different classification problems (`circle`, `line`) and optimization algorithms (`l-bfgs-b`, `cobyla`, `nelder-mead`, `slsqp`), saving the results and performance metrics automatically.
-
-4.  **Robust Statistical Analysis (in `Random/` folder)**:
-    *   The most significant difference between the `Fixed` and `Random` versions lies in `big_functions.py`. The `minimizer` function in the `Random` folder is structured to run each experiment 20 times, averaging the final training and testing accuracies. This ensures that the reported performance is a reliable measure of the classifier's capabilities and is not skewed by random chance.
 
 ### How to Run the Code 🚀
 
@@ -86,19 +69,3 @@ If you use the code from the `Fixed` or `Random` folders in your research, pleas
 }
 ```
 
-If you use code from the original code or build upon the foundational concepts, please also cite the original work:
-
-```bibtex
-@article{P_rez_Salinas_2020,
-   title={Data re-uploading for a universal quantum classifier},
-   volume={4},
-   ISSN={2521-327X},
-   url={http://dx.doi.org/10.22331/q-2020-02-06-226},
-   DOI={10.22331/q-2020-02-06-226},
-   journal={Quantum},
-   publisher={Verein zur Forderung des Open Access Publizierens in den Quantenwissenschaften},
-   author={Pérez-Salinas, Adrián and Cervera-Lierta, Alba and Gil-Fuster, Elies and Latorre, José I.},
-   year={2020},
-   month={Feb},
-   pages={226}
-}
